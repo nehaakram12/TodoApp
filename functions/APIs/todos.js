@@ -63,7 +63,7 @@ exports.deleteTodo = (request, response) => {
 			return document.delete();
 		})
 		.then(() => {
-			response.json({ message: 'Delete successfull' });
+			return response.json({ message: 'Delete successfull' });
 		})
 		.catch(err => {
 			console.error(err);
@@ -85,7 +85,7 @@ exports.editTodo = (request, response) => {
 			document
 				.update(request.body)
 				.then(() => {
-					response.json({ message: 'Updated successfully' });
+					return response.json({ message: 'Updated successfully' });
 				})
 				.catch(err => {
 					console.error(err);
