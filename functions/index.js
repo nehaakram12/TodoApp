@@ -20,11 +20,17 @@ app.put('/todo/:todoId', editTodo);
 
 // ----- user routes ----
 
-const { loginUser, signUpUser, uploadProfilePhoto } = require('./APIs/users');
+const {
+	loginUser,
+	signUpUser,
+	uploadProfilePhoto,
+	getUserDetail
+} = require('./APIs/users');
 
 // Users
 app.post('/login', loginUser);
 app.post('/signup', signUpUser);
 app.post('/user/image', auth, uploadProfilePhoto);
+app.get('/user', auth, getUserDetail);
 
 exports.api = functions.https.onRequest(app);
