@@ -118,6 +118,10 @@ class todo extends Component {
 		authMiddleWare(this.props.history);
 		const authToken = localStorage.getItem('AuthToken');
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
+		this.fetchTodos();
+	};
+
+	fetchTodos = () => {
 		axios
 			.get('http://localhost:5000/todoapp-29438/us-central1/api/todos')
 			.then(response => {
@@ -132,6 +136,8 @@ class todo extends Component {
 	};
 
 	deleteTodoHandler(data) {
+		this.setState({ uiLoading: true });
+
 		authMiddleWare(this.props.history);
 		const authToken = localStorage.getItem('AuthToken');
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
@@ -141,9 +147,10 @@ class todo extends Component {
 				`http://localhost:5000/todoapp-29438/us-central1/api/todo/${todoId}`
 			)
 			.then(() => {
-				window.location.reload();
+				this.fetchTodos();
 			})
 			.catch(err => {
+				this.setState({ uiLoading: false });
 				console.log(err);
 			});
 	}
@@ -206,6 +213,8 @@ class todo extends Component {
 		};
 
 		const handleSubmit = event => {
+			this.setState({ uiLoading: true });
+
 			authMiddleWare(this.props.history);
 			event.preventDefault();
 			const userTodo = {
@@ -231,10 +240,14 @@ class todo extends Component {
 			axios(options)
 				.then(() => {
 					this.setState({ open: false });
-					window.location.reload();
+					this.fetchTodos();
 				})
 				.catch(error => {
-					this.setState({ open: true, errors: error.response.data });
+					this.setState({
+						open: true,
+						errors: error.response.data,
+						uiLoading: false
+					});
 					console.log(error);
 				});
 		};
