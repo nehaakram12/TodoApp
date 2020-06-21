@@ -34,6 +34,11 @@ const styles = theme => ({
 	submit: {
 		margin: theme.spacing(3, 0, 2)
 	},
+	customError: {
+		color: 'red',
+		fontSize: '0.8rem',
+		marginTop: 10
+	},
 	progess: {
 		position: 'absolute'
 	}
@@ -97,6 +102,7 @@ class signup extends Component {
 				this.props.history.push('/');
 			})
 			.catch(error => {
+				console.log('---er', error.response.data);
 				this.setState({
 					errors: error.response.data,
 					loading: false
@@ -107,6 +113,8 @@ class signup extends Component {
 	render() {
 		const { classes } = this.props;
 		const { errors, loading } = this.state;
+		console.log('errors', errors);
+
 		return (
 			<Container component="main" maxWidth="xs">
 				<CssBaseline />
@@ -234,6 +242,8 @@ class signup extends Component {
 									type="password"
 									id="confirmPassword"
 									autoComplete="current-password"
+									helperText={errors.confirmPassword}
+									error={errors.confirmPassword ? true : false}
 									onChange={this.handleChange}
 								/>
 							</Grid>
@@ -268,6 +278,11 @@ class signup extends Component {
 								</Link>
 							</Grid>
 						</Grid>
+						{errors.general && (
+							<Typography variant="body2" className={classes.customError}>
+								{errors.general}
+							</Typography>
+						)}
 					</form>
 				</div>
 			</Container>

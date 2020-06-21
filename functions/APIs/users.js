@@ -91,10 +91,15 @@ exports.signUpUser = (request, response) => {
 			console.error(err);
 			if (err.code === 'auth/email-already-in-use') {
 				return response.status(400).json({ email: 'Email already in use' });
-			} else {
+			} else if (err.code === 'auth/weak-password') {
 				return response
-					.status(500)
-					.json({ general: 'Something went wrong, please try again' });
+					.status(400)
+					.json({ password: 'Weak Password, must be at least 6 characters' });
+			} else {
+				return response.status(500).json({
+					general: 'Something went wrong, please try again',
+					error: err
+				});
 			}
 		});
 };

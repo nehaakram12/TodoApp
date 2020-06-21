@@ -84,6 +84,7 @@ class login extends Component {
 				userData
 			)
 			.then(response => {
+				console.log('response', response);
 				localStorage.setItem('AuthToken', `Bearer ${response.data.token}`);
 				this.setState({
 					loading: false
@@ -91,9 +92,8 @@ class login extends Component {
 				this.props.history.push('/');
 			})
 			.catch(error => {
-				console.log('error', error);
 				this.setState({
-					errors: error,
+					errors: error.response.data,
 					loading: false
 				});
 			});
@@ -102,6 +102,7 @@ class login extends Component {
 	render() {
 		const { classes } = this.props;
 		const { errors, loading } = this.state;
+		console.log('errors,errors', errors);
 		return (
 			<Container component="main" maxWidth="xs">
 				<CssBaseline />
