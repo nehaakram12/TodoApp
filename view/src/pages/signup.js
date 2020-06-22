@@ -63,7 +63,7 @@ class signup extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.UI.errors) {
+		if (nextProps.UI && nextProps.UI.errors) {
 			this.setState({
 				errors: nextProps.UI.errors
 			});
@@ -113,7 +113,6 @@ class signup extends Component {
 	render() {
 		const { classes } = this.props;
 		const { errors, loading } = this.state;
-		console.log('errors', errors);
 
 		return (
 			<Container component="main" maxWidth="xs">

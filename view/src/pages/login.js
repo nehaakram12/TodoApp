@@ -57,7 +57,7 @@ class login extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.UI.errors) {
+		if (nextProps.UI && nextProps.UI.errors) {
 			this.setState({
 				errors: nextProps.UI.errors
 			});
@@ -102,7 +102,6 @@ class login extends Component {
 	render() {
 		const { classes } = this.props;
 		const { errors, loading } = this.state;
-		console.log('errors,errors', errors);
 		return (
 			<Container component="main" maxWidth="xs">
 				<CssBaseline />
