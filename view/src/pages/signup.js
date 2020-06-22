@@ -91,7 +91,7 @@ class signup extends Component {
 		};
 		axios
 			.post(
-				'http://localhost:5000/todoapp-29438/us-central1/api/signup',
+				'https://us-central1-todoapp-29438.cloudfunctions.net/api/signup',
 				newUserData
 			)
 			.then(response => {

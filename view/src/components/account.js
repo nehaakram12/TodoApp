@@ -90,7 +90,7 @@ class account extends Component {
 		const authToken = localStorage.getItem('AuthToken');
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
 		axios
-			.get('http://localhost:5000/todoapp-29438/us-central1/api/user')
+			.get('https://us-central1-todoapp-29438.cloudfunctions.net/api/user')
 			.then(response => {
 				console.log(response.data);
 				this.setState({
@@ -137,7 +137,7 @@ class account extends Component {
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
 		axios
 			.post(
-				'http://localhost:5000/todoapp-29438/us-central1/api/user/image',
+				'https://us-central1-todoapp-29438.cloudfunctions.net/api/user/image',
 				form_data,
 				{
 					headers: {
@@ -173,7 +173,7 @@ class account extends Component {
 		};
 		axios
 			.post(
-				'http://localhost:5000/todoapp-29438/us-central1/api/user',
+				'https://us-central1-todoapp-29438.cloudfunctions.net/api/user',
 				formRequest
 			)
 			.then(() => {

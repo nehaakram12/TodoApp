@@ -80,7 +80,7 @@ class login extends Component {
 		axios.defaults.withCredentials = true;
 		axios
 			.post(
-				'http://localhost:5000/todoapp-29438/us-central1/api/login',
+				'https://us-central1-todoapp-29438.cloudfunctions.net/api/login',
 				userData
 			)
 			.then(response => {

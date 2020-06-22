@@ -123,7 +123,7 @@ class todo extends Component {
 
 	fetchTodos = () => {
 		axios
-			.get('http://localhost:5000/todoapp-29438/us-central1/api/todos')
+			.get('https://us-central1-todoapp-29438.cloudfunctions.net/api/todos')
 			.then(response => {
 				this.setState({
 					todos: response.data,
@@ -144,7 +144,7 @@ class todo extends Component {
 		let todoId = data.todo.todoId;
 		axios
 			.delete(
-				`http://localhost:5000/todoapp-29438/us-central1/api/todo/${todoId}`
+				`https://us-central1-todoapp-29438.cloudfunctions.net/api/todo/${todoId}`
 			)
 			.then(() => {
 				this.fetchTodos();
@@ -224,13 +224,13 @@ class todo extends Component {
 			let options = {};
 			if (this.state.buttonType === 'Edit') {
 				options = {
-					url: `http://localhost:5000/todoapp-29438/us-central1/api/todo/${this.state.todoId}`,
+					url: `https://us-central1-todoapp-29438.cloudfunctions.net/api/todo/${this.state.todoId}`,
 					method: 'put',
 					data: userTodo
 				};
 			} else {
 				options = {
-					url: 'http://localhost:5000/todoapp-29438/us-central1/api/todo',
+					url: 'https://us-central1-todoapp-29438.cloudfunctions.net/api/todo',
 					method: 'post',
 					data: userTodo
 				};

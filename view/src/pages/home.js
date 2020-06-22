@@ -97,7 +97,7 @@ class home extends Component {
 		if (authToken) {
 			axios.defaults.headers.common = { Authorization: `${authToken}` };
 			axios
-				.get('http://localhost:5000/todoapp-29438/us-central1/api/user')
+				.get('https://us-central1-todoapp-29438.cloudfunctions.net/api/user')
 				.then(response => {
 					console.log(response.data);
 					this.setState({
